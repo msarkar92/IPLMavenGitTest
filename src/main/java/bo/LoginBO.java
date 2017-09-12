@@ -1,8 +1,5 @@
 package bo;
 
-import java.io.File;
-
-import util.ValidUtil;
 import dao.LoginDAO;
 import dto.MemberDTO;
 import dto.ResponseDTO;

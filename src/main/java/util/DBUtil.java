@@ -20,7 +20,6 @@ public class DBUtil {
 			Class.forName("com.mysql.jdbc.Driver");  
 
 			//step2 create  the connection object
-			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ipl","root","root");
 			con = DriverManager.getConnection(url,username,pass);
 		}
 		catch(Exception e){

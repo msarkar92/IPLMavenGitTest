@@ -8,13 +8,12 @@ import java.util.Date;
 import org.slf4j.LoggerFactory;
 
 import util.DBUtil;
-import controller.UploadFileController;
 import dto.ResponseDTO;
 
 public class UploadFileDAO {
 	
 	//To maintain log
-	final org.slf4j.Logger log=LoggerFactory.getLogger(UploadFileController.class);
+	final org.slf4j.Logger log=LoggerFactory.getLogger(UploadFileDAO.class);
 	Connection con=new DBUtil().getConnectin();
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;

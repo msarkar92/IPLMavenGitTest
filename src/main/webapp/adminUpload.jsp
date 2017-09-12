@@ -4,11 +4,9 @@
 <html lang="en">
 
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <meta name="description" content="">
 <meta name="author" content="">
@@ -36,7 +34,7 @@
 				<ul class="nav nav-sidebar">
 					<li>
 						<form action="UploadFileController" method="post" enctype="multipart/form-data" id="form-content">
-							<input type="file" id="file" name="file" multiple placeholder="Upload...">
+							<input type="file" id="file" name="file" placeholder="Upload...">
 							<input class="col-sm-12" type="submit" value="Upload">
 						</form>
 					</li>
@@ -44,6 +42,11 @@
 			</div>
 		</div>
 	</div>
+	<%
+		String uploadStatus=request.getAttribute("uploadStatus")==null?"":request.getAttribute("uploadStatus").toString();
+		
+	%>
+	<p><%=uploadStatus%></p>
 	</div>
 	
 	<!-- Bootstrap core JavaScript -->

@@ -7,14 +7,13 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.LoggerFactory;
 
-import controller.UploadFileController;
 import dao.UploadFileDAO;
 import dto.ResponseDTO;
 
 public class UploadFileBO {
 	
 	//To maintain log
-	final org.slf4j.Logger log=LoggerFactory.getLogger(UploadFileController.class);
+	final org.slf4j.Logger log=LoggerFactory.getLogger(UploadFileBO.class);
 	
 	//To get max File Id from file_upload_log
 	public Integer getMaxFileId(){
@@ -80,7 +79,12 @@ public class UploadFileBO {
 			createDirectory(rootPath, localFolder);
 		
 		try{
-			for(FileItem fi:fileItems){				
+			for(FileItem fi:fileItems){
+				if(fi==null){
+					responseDTO.setStatus(false);
+					responseDTO.setMessage("Select a file first");
+					return responseDTO;
+				}			
 				String fileName=FilenameUtils.getBaseName(fi.getName());
 				String fileExtension=FilenameUtils.getExtension(fi.getName());
 				String newFileName=maxId+"_file";
