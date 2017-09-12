@@ -30,7 +30,7 @@
 			<ul class="nav navbar-nav navbar-right">
 
 
-				<li><a href="admin.jsp">Home</a></li>
+				<li><a href="adminHome.jsp">Home</a></li>
 
 			</ul>
 		</div>
@@ -38,7 +38,9 @@
 	</div>
 </nav>
 
-<p style="text-align:center;"><%=request.getAttribute("msg")==null?"":request.getAttribute("msg")%></p>
+	<p style="text-align:center;">
+		<%=request.getAttribute("msg")==null?"":request.getAttribute("msg")%>
+	</p>
   
 <div class="container">
 	<div class="row">

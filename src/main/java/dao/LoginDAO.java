@@ -14,9 +14,8 @@ public class LoginDAO {
 		responseDTO.setStatus(false);
 		responseDTO.setMessage("Invalid userID or Password !!!");
 		
+		//To get the connection object
 		Connection con=new DBUtil().getConnectin();
-//		PreparedStatement pstmt=con.prepareStatement("select email from admin where email= '"+memberDTO.getUserId()+"' "
-//				+ " and password= '"+memberDTO.getPassword()+"' ");
 		
 		PreparedStatement pstmt=con.prepareStatement("select admin_email from admin_details where admin_email= '"+memberDTO.getUserId()+"' "
 				+ " and admin_password= '"+memberDTO.getPassword()+"' ");

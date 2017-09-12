@@ -81,13 +81,13 @@ public class LoginController extends HttpServlet {
 		}
 		else{
 			log.info(responseDTO.getMessage());
-			//System.out.println(responseDTO.getMessage());		
+
 			/*
 			request.setAttribute("response",responseDTO.getMessage());
 			request.getRequestDispatcher("/adminLogin.jsp").forward(request, response);
 			*/
 			//pw.print(responseDTO.getMessage());			
 		}		
-		pw.print(gson.toJson(responseDTO));				
+		pw.print(gson.toJson(responseDTO));		
 	}
 }

@@ -29,6 +29,7 @@ import dao.ResetDAO;
 
 public class ResetController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	final org.slf4j.Logger log=LoggerFactory.getLogger(ResetController.class);
 	
 	//final Logger LOG = (Logger) LoggerFactory.getLogger(ResetController.class);
     /**
@@ -51,14 +52,16 @@ public class ResetController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		final org.slf4j.Logger log=LoggerFactory.getLogger(ResetController.class);
 		
 		
-		String oldpassword = request.getParameter("oldpass");
-		String  newpassword = request.getParameter("newpass");
-		String confirmpassword = request.getParameter("confirmpass");
+		
+		String oldpassword = request.getParameter("oldpass")==null?"":request.getParameter("oldpass").toString();
+		String  newpassword = request.getParameter("newpass")==null?"": request.getParameter("newpass").toString();
+		String confirmpassword = request.getParameter("confirmpass")==null?"":request.getParameter("confirmpass");
+		
 		PrintWriter out=response.getWriter();
 		Cookie[] cookie=request.getCookies();
+		
 		String uname = null;
 		if (cookie != null) {
 			 
@@ -69,95 +72,84 @@ public class ResetController extends HttpServlet {
 	                  uname = cookie[i].getValue();
 	            }
 	        }
-	    }
-		
+	    }		
 	
 		log.debug(uname);
 		log.debug(newpassword);
 		try
 		{
-		if(oldpassword.equals(null) || oldpassword==""|| newpassword.equals(null) || newpassword==""||confirmpassword.equals(null) || confirmpassword=="")
-		{
-			request.setAttribute("msg", "All fields are mandatory");
-			RequestDispatcher rd=request.getRequestDispatcher("reset.jsp");  
-			 
-			  
-			rd.include(request, response);
-		}
-		else if(!newpassword.equals(confirmpassword))
-		{
-			request.setAttribute("msg", "Password does not match");
-			RequestDispatcher rd=request.getRequestDispatcher("reset.jsp");  
-			 
-			  
-			rd.include(request, response);
-		}
-		
-		else
-			
-		{
-			//LoginBO l=new LoginBO();
-			//l.setEmail(uname);
-			//l.setPassword(newpassword);
-			 try {
-				int status=ResetDAO.updatedata(newpassword, uname);
-				if(status!=0)
-				{
-				
-					Cookie loginCookie=null;
-					if(cookie != null)
+			if(oldpassword.equals(null) || oldpassword==""|| newpassword.equals(null) || newpassword==""||confirmpassword.equals(null) || confirmpassword==""){
+				request.setAttribute("msg", "All fields are mandatory");
+				RequestDispatcher rd=request.getRequestDispatcher("reset.jsp");
+				rd.include(request, response);
+			}
+			else if(!newpassword.equals(confirmpassword))
+			{
+				request.setAttribute("msg", "Password does not match");
+				RequestDispatcher rd=request.getRequestDispatcher("reset.jsp");
+				rd.include(request, response);
+			}		
+			else			
+			{
+				//LoginBO l=new LoginBO();
+				//l.setEmail(uname);
+				//l.setPassword(newpassword);
+				try {
+					int status=ResetDAO.updatedata(newpassword, uname);
+					if(status!=0)
 					{
-						for(Cookie ck : cookie)
+
+						Cookie loginCookie=null;
+						if(cookie != null)
 						{
-							if(ck.getName().equals("emailaddress"))
+							for(Cookie ck : cookie)
 							{
-								loginCookie = ck;
-								break;
+								if(ck.getName().equals("emailaddress"))
+								{
+									loginCookie = ck;
+									break;
+								}
 							}
 						}
+						if(loginCookie != null)
+						{
+							loginCookie.setMaxAge(0);
+							response.addCookie(loginCookie);
+						}
+						out.print("<script>");
+						out.print("alert('password updated');");
+						out.print("</script>");
+
+
+						log.info("Password Updated");
+						response.sendRedirect("login.jsp");
+						//request.setAttribute("msg", "Password Updated");
+						//RequestDispatcher rd=request.getRequestDispatcher("LogoutController");  
+
+
+						//rd.include(request, response);
+						//response.sendRedirect("login.jsp");
 					}
-					if(loginCookie != null)
+					else
 					{
-						loginCookie.setMaxAge(0);
-						response.addCookie(loginCookie);
+						request.setAttribute("msg", "Password not updated");
+						RequestDispatcher rd=request.getRequestDispatcher("reset.jsp");  
+
+
+						rd.include(request, response);
 					}
-					out.print("<script>");
-					out.print("alert('password updated');");
-					out.print("</script>");
-					
-					
-					log.info("Password Updated");
-					response.sendRedirect("login.jsp");
-					//request.setAttribute("msg", "Password Updated");
-					//RequestDispatcher rd=request.getRequestDispatcher("LogoutController");  
-					 
-					  
-					//rd.include(request, response);
-					//response.sendRedirect("login.jsp");
-				}
-				else
+				} 
+				catch (Exception e) 
 				{
-					request.setAttribute("msg", "Password not updated");
-					RequestDispatcher rd=request.getRequestDispatcher("reset.jsp");  
-					 
-					  
-					rd.include(request, response);
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} 
-			 catch (Exception e) 
-			 {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
-	}
 		catch(Exception e)
 		{
 			System.out.println(e);
 		}
-		
-
-
 	}
 
 }
