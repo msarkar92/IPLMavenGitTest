@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--<property name="LOG_FILES_HOME" value="D:/ipl" />-->
+    
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{0}.%M\(%line\) - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	
+	
+	<!-- 
+	<logger name="org.springframework" level="info"/>
+ 	
+	<logger name="com.cts.academy.fsd.web" level="debug" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE-AUDIT" />
+	</logger>-->
+
+	<root level="debug">
+		<appender-ref ref="STDOUT" />
+		<!--<appender-ref ref="FILE-AUDIT" />-->
+	</root>
+	
+</configuration>

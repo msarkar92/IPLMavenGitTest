@@ -1,0 +1,110 @@
+body{
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.col-centered{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	/*text-align: center;*/
+}
+
+
+/* style for showing match details*/
+.margin-all-center{
+	margin: auto;
+}
+
+.transparent-nav{
+	background: transparent;
+}
+
+
+@media ( max-width :920px) {
+	.affix {
+		position: static;
+		width: auto;
+		top: 0;
+	}
+	
+	.h3-winning-status{
+		color: #0066ff;
+		font-size:12px;
+		font-family: sans-serif;
+		font-weight: 600;
+	}	
+}
+
+.background-image-div{
+	/*background-color: #F44336;*/
+	color: #fff;
+	height: 200px;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:0px 0px;
+}
+
+
+.short-match-list{
+	
+}
+
+.match-short-detail{
+	background-color: #d9d9d9;
+	padding:12px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+}
+
+.h3-winning-status{
+	color: #0066ff;
+	font-family: sans-serif;
+	font-weight: 600;
+}
+
+.shadow-depth{
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+/*-- end of match details */
+
+/* footer styles */
+.footer {
+	width: 100%;
+}
+
+.footer-middle{
+	background-color: #8c8c8c;
+	padding:10px;
+}
+
+.footer-middle table td{
+	text-align: top;
+	vertical-align: top;
+	padding: 5px;
+}
+
+.footer-middle ul{
+	list-style-type: none;
+	color: white;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+
+.footer-bottom {
+	background-color: #1a1a1a;
+	color: white;
+	padding: 5px;
+	font-size: 10px;
+}
+
+/* -- end of footer styles */  
+  
