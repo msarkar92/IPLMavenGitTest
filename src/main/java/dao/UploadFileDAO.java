@@ -38,14 +38,7 @@ public class UploadFileDAO {
 	
 	public ResponseDTO insertFileDetails(String newFileName,String fileExtension,String filePath,String tableName){
 		ResponseDTO responseDTO=new ResponseDTO();
-		/*
-		file_name
-		file_extension
-		file_path
-		file_upload_date
-		file_creator
-		file_process_status
-		*/
+		
 		Date date=new Date();
 		java.sql.Timestamp sqlDate=new java.sql.Timestamp(date.getTime());
 		try{
@@ -53,8 +46,7 @@ public class UploadFileDAO {
 			//pstmt.setString(1,tableName);
 			pstmt.setString(1,newFileName);
 			pstmt.setString(2,fileExtension);
-			pstmt.setString(3,filePath.replaceAll("/", "//"));
-			//pstmt.setDate(4,sqlDate);
+			pstmt.setString(3,filePath.replaceAll("/", "//"));			
 			pstmt.setTimestamp(4,sqlDate);
 			/*
 			pstmt.setString(6,"");
