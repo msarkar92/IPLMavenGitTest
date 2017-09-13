@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="dto.UploadFileLogDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,15 +52,39 @@
 	<p><%=uploadStatus%></p>
 	
 		<div>
-			<form action="">
+			<form action="UploadFileListController">
 				<input type="submit" value="Refresh"> 
 			</form>
 		</div>
+		<% if(request.getAttribute("uploadList")!=null){
+		%>
+		<%
+			List<UploadFileLogDTO> uploadFileLogDTOs=(ArrayList<UploadFileLogDTO>)request.getAttribute("uploadList");
+			String status="";
+			if(uploadFileLogDTOs.size()>0){
+				status="No recent files";
+		%>
+		<p><%=status %></p>
+		<%}
+		else{
+			int id=1;
+			for(UploadFileLogDTO dto:uploadFileLogDTOs){
+		%>
 		<div>
 			<table>
-				
+				<tr>
+					<td><input type="text" id="txt_<%=id++ %>" value="<%=dto.getFileName()+'.'+dto.getFileExtension()%>"></td>					
+					<td><%=dto.getFileUpload_date()%></td>
+					<td><input type="text" id="<%=id%>" value="<%=dto.getFilePath()%>"></td>
+					<td><input type="button" onclick="selectFile()"></td>
+				</tr>
 			</table>
 		</div>
+		<%
+			}
+		}
+		}
+		%>
 	</div>
 	
 	<!-- Bootstrap core JavaScript -->

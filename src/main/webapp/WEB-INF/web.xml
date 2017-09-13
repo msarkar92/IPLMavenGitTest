@@ -33,6 +33,13 @@
 	<servlet>
 		<description>
 		</description>
+		<display-name>UploadFileListController</display-name>
+		<servlet-name>UploadFileListController</servlet-name>
+		<servlet-class>controller.UploadFileListController</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
 		<display-name>ResetController</display-name>
 		<servlet-name>ResetController</servlet-name>
 		<servlet-class>controller.ResetController</servlet-class>
@@ -49,6 +56,10 @@
 	<servlet-mapping>
 		<servlet-name>UploadFileController</servlet-name>
 		<url-pattern>/UploadFileController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadFileListController</servlet-name>
+		<url-pattern>/UploadFileListController</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ResetController</servlet-name>

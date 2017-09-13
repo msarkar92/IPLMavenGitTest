@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 public class DBUtil {
 	//Create DB Connection
 	
-	public Connection getConnectin(){
+	public static Connection getConnectin(){
 		Connection con=null;
 		try{  
 			ResourceBundle rb= ResourceBundle.getBundle("mysql");

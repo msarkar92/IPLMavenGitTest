@@ -15,7 +15,7 @@ public class ResetDAO {
 		Connection con=null;
 		Integer i=null;
 		try{
-			con=new DBUtil().getConnectin();
+			con=DBUtil.getConnectin();
 			log.debug("resetdao");
 			PreparedStatement ps=con.prepareStatement("update admin_details set admin_password=? where admin_email=?");
 			ps.setString(1,newpassword);

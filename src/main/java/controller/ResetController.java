@@ -1,13 +1,7 @@
 package controller;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,12 +9,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.LoggerFactory;
 
-
-import bo.LoginBO;
 import dao.ResetDAO;
 
 /**
@@ -57,7 +48,7 @@ public class ResetController extends HttpServlet {
 		String  newpassword = request.getParameter("newpass")==null?"": request.getParameter("newpass").toString();
 		String confirmpassword = request.getParameter("confirmpass")==null?"":request.getParameter("confirmpass");
 		
-		PrintWriter out=response.getWriter();
+		//PrintWriter out=response.getWriter();
 		Cookie[] cookie=request.getCookies();
 		
 		String uname = null;

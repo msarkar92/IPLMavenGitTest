@@ -14,7 +14,9 @@ public class UploadFileDAO {
 	
 	//To maintain log
 	final org.slf4j.Logger log=LoggerFactory.getLogger(UploadFileDAO.class);
-	Connection con=new DBUtil().getConnectin();
+	
+	//To get the DB connection 
+	Connection con=DBUtil.getConnectin();
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
 	

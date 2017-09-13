@@ -8,13 +8,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.LoggerFactory;
 
+import bo.LoginBO;
+
 import com.google.gson.Gson;
 
-import bo.LoginBO;
 import dto.MemberDTO;
 import dto.ResponseDTO;
 
@@ -24,7 +24,9 @@ import dto.ResponseDTO;
 
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	//To maintain log
+	final org.slf4j.Logger log=LoggerFactory.getLogger(LoginController.class);
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -46,8 +48,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//To maintain log
-		final org.slf4j.Logger log=LoggerFactory.getLogger(LoginController.class);	
+		
 		log.info(request.getParameter("data"));
 		
 		Gson gson = new Gson();
