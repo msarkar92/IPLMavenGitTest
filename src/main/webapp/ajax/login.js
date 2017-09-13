@@ -19,9 +19,8 @@ $(document).ready(function() {
 					$("#error-msg").html(jsonData.message);
 				}
 				else{
-					if(setCookie("userId",$("#email").val())==true){
+					//if(setCookie("userId",$("#email").val())==true)
 						window.location.replace("http://localhost:8018/IPLMaven/adminHome.jsp");
-					}
 				}
 			},
 			error: function(responseText){

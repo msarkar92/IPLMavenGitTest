@@ -53,8 +53,6 @@ public class ResetController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		
-		
 		String oldpassword = request.getParameter("oldpass")==null?"":request.getParameter("oldpass").toString();
 		String  newpassword = request.getParameter("newpass")==null?"": request.getParameter("newpass").toString();
 		String confirmpassword = request.getParameter("confirmpass")==null?"":request.getParameter("confirmpass");
@@ -64,29 +62,28 @@ public class ResetController extends HttpServlet {
 		
 		String uname = null;
 		if (cookie != null) {
-			 
-	        for (int i = 0; i < cookie.length; i++) {
-	 
-	            if (cookie[i].getName().equals("emailaddress")) {
-	 
-	                  uname = cookie[i].getValue();
+	        	for(Cookie c:cookie){
+	            	if (c.getName().equals("userId")) {
+	                  uname = c.getValue();
+	                  break;
 	            }
 	        }
 	    }		
 	
 		log.debug(uname);
 		log.debug(newpassword);
+		
 		try
 		{
 			if(oldpassword.equals(null) || oldpassword==""|| newpassword.equals(null) || newpassword==""||confirmpassword.equals(null) || confirmpassword==""){
 				request.setAttribute("msg", "All fields are mandatory");
-				RequestDispatcher rd=request.getRequestDispatcher("reset.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("adminReset.jsp");
 				rd.include(request, response);
 			}
 			else if(!newpassword.equals(confirmpassword))
 			{
 				request.setAttribute("msg", "Password does not match");
-				RequestDispatcher rd=request.getRequestDispatcher("reset.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("adminReset.jsp");
 				rd.include(request, response);
 			}		
 			else			
@@ -104,7 +101,7 @@ public class ResetController extends HttpServlet {
 						{
 							for(Cookie ck : cookie)
 							{
-								if(ck.getName().equals("emailaddress"))
+								if(ck.getName().equals("userId"))
 								{
 									loginCookie = ck;
 									break;
@@ -116,13 +113,14 @@ public class ResetController extends HttpServlet {
 							loginCookie.setMaxAge(0);
 							response.addCookie(loginCookie);
 						}
+						/*
 						out.print("<script>");
 						out.print("alert('password updated');");
 						out.print("</script>");
-
+						*/
 
 						log.info("Password Updated");
-						response.sendRedirect("login.jsp");
+						response.sendRedirect("adminLogin.jsp");
 						//request.setAttribute("msg", "Password Updated");
 						//RequestDispatcher rd=request.getRequestDispatcher("LogoutController");  
 
@@ -133,9 +131,7 @@ public class ResetController extends HttpServlet {
 					else
 					{
 						request.setAttribute("msg", "Password not updated");
-						RequestDispatcher rd=request.getRequestDispatcher("reset.jsp");  
-
-
+						RequestDispatcher rd=request.getRequestDispatcher("adminReset.jsp");
 						rd.include(request, response);
 					}
 				} 

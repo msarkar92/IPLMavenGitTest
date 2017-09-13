@@ -47,6 +47,17 @@
 		
 	%>
 	<p><%=uploadStatus%></p>
+	
+		<div>
+			<form action="">
+				<input type="submit" value="Refresh"> 
+			</form>
+		</div>
+		<div>
+			<table>
+				
+			</table>
+		</div>
 	</div>
 	
 	<!-- Bootstrap core JavaScript -->

@@ -1,10 +1,10 @@
 package controller;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,6 +55,8 @@ public class LoginController extends HttpServlet {
 		
 		LoginBO loginBO=new LoginBO();
 		
+		log.info("userId= "+memberDTO.getUserId());
+		
 		ResponseDTO responseDTO=new ResponseDTO();
 		
 		try{
@@ -66,27 +68,18 @@ public class LoginController extends HttpServlet {
 		
 		PrintWriter pw=response.getWriter();
 		
-		//if validation gets failed in the any of the underlying layers status is set to false
+		//if validation gets failed in the any of the underlying layers status is set to false 
 		//based on the status controller decides with page to be redirected 
 		if(responseDTO.getStatus()){			
-			//RequestDispatcher rd=request.getRequestDispatcher("/adminHome.jsp");
-			//rd.forward(request, response);						
-			//response.sendRedirect("/adminHome.jsp");
-			
-			//session is created when login is successful
-			HttpSession session=request.getSession();
-			session.setAttribute("userId",memberDTO.getUserId());
+			//Cookie is created when login is successful			
+			Cookie ck=new Cookie("userId", memberDTO.getUserId());
+			ck.setMaxAge(365 * 24 * 60 * 60);
+			response.addCookie(ck);		
 			
 			responseDTO.setMessage("adminLogin.jsp");
 		}
 		else{
 			log.info(responseDTO.getMessage());
-
-			/*
-			request.setAttribute("response",responseDTO.getMessage());
-			request.getRequestDispatcher("/adminLogin.jsp").forward(request, response);
-			*/
-			//pw.print(responseDTO.getMessage());			
 		}		
 		pw.print(gson.toJson(responseDTO));		
 	}

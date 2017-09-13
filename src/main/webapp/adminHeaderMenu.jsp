@@ -63,8 +63,8 @@
 				</li>
 				
 				<li class="nav-item">
-					<form class="navbar-form navbar-left">
-						<button type="button" id="btn-logout" class="btn btn-danger">
+					<form class="navbar-form navbar-left" action="LogoutController" method="post">
+						<button type="submit" id="btn-logout" class="btn btn-danger">
 							<i class="fa fa-fw fa-sign-out"></i> Logout
 						</button>
 					</form>

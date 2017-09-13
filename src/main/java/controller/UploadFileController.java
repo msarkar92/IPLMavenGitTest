@@ -51,14 +51,14 @@ public class UploadFileController extends HttpServlet {
 		List<FileItem> fileItems=null;
 		try{
 			//To get the list of file items sent form client machine
-			log.debug(sfu.parseRequest(request).toString());
+			//log.debug(sfu.parseRequest(request).toString());
 			fileItems=sfu.parseRequest(request);
 		}
 		catch(Exception e){
 			log.error(e.getMessage());
 		}
 		
-		if(fileItems.size()>0){	
+		if(fileItems.size()>0){
 			String rootPath=getServletConfig().getInitParameter("rootPath");
 			UploadFileBO uploadFileBO =new UploadFileBO();
 			responseDTO=uploadFileBO.uploadFile(fileItems, rootPath,"uploads");

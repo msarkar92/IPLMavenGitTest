@@ -14,9 +14,9 @@
 	<servlet>
 		<description>
   	</description>
-		<display-name>logoutController</display-name>
-		<servlet-name>logoutController</servlet-name>
-		<servlet-class>controller.logoutController</servlet-class>
+		<display-name>LogoutController</display-name>
+		<servlet-name>LogoutController</servlet-name>
+		<servlet-class>controller.LogoutController</servlet-class>
 	</servlet>
 	
 	<servlet>
@@ -29,7 +29,13 @@
 			<param-name>rootPath</param-name>
 			<param-value>C:/Users/616486/git/IPLMavenGit/</param-value>
 		</init-param>
-
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ResetController</display-name>
+		<servlet-name>ResetController</servlet-name>
+		<servlet-class>controller.ResetController</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -37,12 +43,16 @@
 		<url-pattern>/LoginController</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>logoutController</servlet-name>
-		<url-pattern>/logoutController</url-pattern>
+		<servlet-name>LogoutController</servlet-name>
+		<url-pattern>/LogoutController</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>UploadFileController</servlet-name>
 		<url-pattern>/UploadFileController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ResetController</servlet-name>
+		<url-pattern>/ResetController</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

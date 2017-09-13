@@ -4,10 +4,12 @@ $(document).ready(function() {
 	if(checkCookie("userId")==""){
 		window.location.replace("http://localhost:8018/IPLMaven/adminLogin.jsp");
 	}
-	*/	
+	*/
+	/*
 	$("#btn-logout").click(function() {
-		//alert();
+		alert();
 		if(deleteCookie("userId")==true)
 			window.location.replace("http://localhost:8018/IPLMaven/adminLogin.jsp");
 	});
+	*/
 });
