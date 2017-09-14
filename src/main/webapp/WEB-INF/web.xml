@@ -78,6 +78,20 @@
 		<servlet-name>InsertToDatabase</servlet-name>
 		<servlet-class>controller.InsertToDatabase</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>InsertToDatabaseController</display-name>
+		<servlet-name>InsertToDatabaseController</servlet-name>
+		<servlet-class>controller.InsertToDatabaseController</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>InsertServiceBO</display-name>
+		<servlet-name>InsertServiceBO</servlet-name>
+		<servlet-class>bo.InsertServiceBO</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>ResetController</servlet-name>
 		<url-pattern>/ResetController</url-pattern>
@@ -85,6 +99,14 @@
 	<servlet-mapping>
 		<servlet-name>InsertToDatabase</servlet-name>
 		<url-pattern>/InsertToDatabase</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InsertToDatabaseController</servlet-name>
+		<url-pattern>/InsertToDatabaseController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InsertServiceBO</servlet-name>
+		<url-pattern>/InsertServiceBO</url-pattern>
 	</servlet-mapping>
 
 </web-app>

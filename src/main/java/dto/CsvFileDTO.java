@@ -1,11 +1,9 @@
 package dto;
 
-import java.util.Date;
-
 public class CsvFileDTO {
 	private Integer season;
 	private String city;
-	private Date date;
+	private String date;
 	private String team1;
 	private String team2;
 	private String tossWinner;
@@ -30,10 +28,11 @@ public class CsvFileDTO {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public Date getDate() {
+	
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public String getTeam1() {

@@ -4,9 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ResourceBundle;
 
+import org.slf4j.LoggerFactory;
+
 public class DBUtil {
-	//Create DB Connection
 	
+	//To maintain log
+	final static org.slf4j.Logger log=LoggerFactory.getLogger(CsvParseUtilImpl.class);
+	
+	//Create DB Connection
 	public static Connection getConnectin(){
 		Connection con=null;
 		try{  
@@ -23,7 +28,7 @@ public class DBUtil {
 			con = DriverManager.getConnection(url,username,pass);
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
+			log.error(e.getMessage());
 		}
 		return con;
 	}

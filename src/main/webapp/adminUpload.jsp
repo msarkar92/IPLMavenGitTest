@@ -94,11 +94,21 @@
 			}
 		%>
 			<div>
-				<form action="" method="post">
-					<input type="text" id="txt-selected-file" name="txt-selected-file" size="60"> 
+				<form action="InsertToDatabaseController" method="post">
+					<input type="text" id="txt-selected-file" name="txt-selected-file" size="60" required> 
 					<input type="submit" value="Process">
 				</form>
 			</div>
+			<div>
+				<% if(request.getAttribute("insertStatus")!=null){
+					String insertStatus=request.getAttribute("insertStatus")==null?"":(String)request.getAttribute("insertStatus");
+				%>
+				<p><%=insertStatus%></p>
+				<%
+				}
+				%>
+			</div>
+			
 		</div>
 		<%
 		}
