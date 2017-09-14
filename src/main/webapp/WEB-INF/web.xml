@@ -71,9 +71,20 @@
 		<servlet-name>ResetController</servlet-name>
 		<servlet-class>controller.ResetController</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>InsertToDatabase</display-name>
+		<servlet-name>InsertToDatabase</servlet-name>
+		<servlet-class>controller.InsertToDatabase</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>ResetController</servlet-name>
 		<url-pattern>/ResetController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InsertToDatabase</servlet-name>
+		<url-pattern>/InsertToDatabase</url-pattern>
 	</servlet-mapping>
 
 </web-app>
