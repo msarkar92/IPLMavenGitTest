@@ -1,11 +1,11 @@
 package dto;
 
 public class OutcomeDTO {
-	Integer matchId;
-	String playerOfMatch;
-	Integer winByRuns;
-	Integer winByWickets;
-	Integer winTeamId;
+	private Integer matchId;
+	private String playerOfMatch;
+	private Integer winByRuns;
+	private Integer winByWickets;
+	private Integer winTeamId;
 	
 	public Integer getMatchId() {
 		return matchId;

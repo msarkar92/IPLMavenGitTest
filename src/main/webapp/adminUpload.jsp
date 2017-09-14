@@ -19,6 +19,15 @@
 <script src="js/myScript.js"></script>
 <script src="ajax/adminHome.js"></script>
 
+<script type="text/javascript">
+	function selectFile(btnId){
+		//alert(btnId);
+		var txtFile=document.getElementById('txt-fileName-'+btnId).value;
+		var txtPath=document.getElementById('txt-filePath-'+btnId).value;
+		document.getElementById('txt-selected-file').value=txtPath+txtFile;
+	}
+</script>
+
 </head>
 
 <body class="fixed-nav" id="page-top">
@@ -52,7 +61,7 @@
 	<p><%=uploadStatus%></p>
 	
 		<div>
-			<form action="UploadFileListController">
+			<form action="UploadFileListController" method="post">
 				<input type="submit" value="Refresh"> 
 			</form>
 		</div>
@@ -61,7 +70,7 @@
 		<%
 			List<UploadFileLogDTO> uploadFileLogDTOs=(ArrayList<UploadFileLogDTO>)request.getAttribute("uploadList");
 			String status="";
-			if(uploadFileLogDTOs.size()>0){
+			if(uploadFileLogDTOs.size()<0){
 				status="No recent files";
 		%>
 		<p><%=status %></p>
@@ -73,15 +82,25 @@
 		<div>
 			<table>
 				<tr>
-					<td><input type="text" id="txt_<%=id++ %>" value="<%=dto.getFileName()+'.'+dto.getFileExtension()%>"></td>					
+					<td><input type="text" id="txt-fileName-<%=++id %>" value="<%=dto.getFileName()+'.'+dto.getFileExtension()%>"></td>					
 					<td><%=dto.getFileUpload_date()%></td>
-					<td><input type="text" id="<%=id%>" value="<%=dto.getFilePath()%>"></td>
-					<td><input type="button" onclick="selectFile()"></td>
+					<td><input type="text"  id="txt-filePath-<%=id %>"value="<%=dto.getFilePath()%>"></td>
+					<td><input type="button" id="<%=id%>" onclick="selectFile(this.id)" value="Select"></td>
 				</tr>
 			</table>
-		</div>
+			
+		
 		<%
 			}
+		%>
+			<div>
+				<form action="" method="post">
+					<input type="text" id="txt-selected-file" name="txt-selected-file" size="60"> 
+					<input type="submit" value="Process">
+				</form>
+			</div>
+		</div>
+		<%
 		}
 		}
 		%>

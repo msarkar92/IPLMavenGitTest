@@ -1,8 +1,8 @@
 package dto;
 
 public class MemberDTO {
-	String userId;
-	String password;
+	private String userId;
+	private String password;
 	
 	public String getUserId() {
 		return userId;

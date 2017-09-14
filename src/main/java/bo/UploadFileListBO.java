@@ -12,6 +12,7 @@ public class UploadFileListBO {
 	final org.slf4j.Logger log=LoggerFactory.getLogger(UploadFileListBO.class); 
 	
 	public List<UploadFileLogDTO> getUploadFileList(){
+		log.info("BO");
 		List<UploadFileLogDTO> uploadFileLogDTOs=new ArrayList<>();
 		uploadFileLogDTOs=FileUploadListDAO.getUploadFileList();
 		return uploadFileLogDTOs;

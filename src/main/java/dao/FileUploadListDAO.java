@@ -28,9 +28,12 @@ public class FileUploadListDAO {
 				dto.setFileId(rs.getInt("file_id"));
 				dto.setFileName(rs.getString("file_name"));
 				dto.setFileExtension(rs.getString("file_extension"));
-				dto.setFilePath(rs.getString("file_path"));
+				String path=rs.getString("file_path");
+				path.replaceAll("//","/");
+				dto.setFilePath(path);
 				dto.setFileProcessStatus(rs.getString("file_process_status"));
 				uploadFileLogDTOs.add(dto);
+				log.info("found");
 			}
 		}catch(Exception e){
 			log.error(e.getMessage());

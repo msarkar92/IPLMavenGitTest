@@ -47,7 +47,7 @@ public class UploadFileDAO {
 			//pstmt.setString(1,tableName);
 			pstmt.setString(1,newFileName);
 			pstmt.setString(2,fileExtension);
-			pstmt.setString(3,filePath.replaceAll("/", "//"));			
+			pstmt.setString(3,filePath); //.replaceAll("/", "//"));			
 			pstmt.setTimestamp(4,sqlDate);
 			/*
 			pstmt.setString(6,"");

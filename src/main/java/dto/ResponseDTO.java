@@ -1,8 +1,8 @@
 package dto;
 
 public class ResponseDTO {
-	Boolean status;
-	String message;
+	private Boolean status;
+	private String message;
 	
 	public Boolean getStatus() {
 		return status;

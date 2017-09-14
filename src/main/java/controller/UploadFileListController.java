@@ -26,22 +26,21 @@ public class UploadFileListController extends HttpServlet {
      */
     public UploadFileListController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		RequestDispatcher rd=request.getRequestDispatcher("/adminUpload.jsp");
+		log.info("sevlet called");
+		RequestDispatcher rd=request.getRequestDispatcher("adminUpload.jsp");
 		//ResponseDTO responseDTO=new ResponseDTO();
 		
 		UploadFileListBO uploadFileListBO=new UploadFileListBO();
