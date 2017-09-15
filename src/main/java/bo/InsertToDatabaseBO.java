@@ -30,7 +30,9 @@ public class InsertToDatabaseBO {
 			ParseUtilInterface csvParseUtil=new CsvParseUtilImpl();
 			List<CsvFileDTO> csvFileDTOs=csvParseUtil.parseToDto(stringFileData);
 			
-			
+			//TO insert into database
+			DbServiceBO dbServiceBO=new DbServiceBO();			
+			responseDTO=dbServiceBO.insertMatchDetails(csvFileDTOs);
 		}else{
 			responseDTO.setStatus(false);
 			responseDTO.setMessage("Select a file first !!!");

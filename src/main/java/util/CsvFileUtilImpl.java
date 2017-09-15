@@ -1,9 +1,9 @@
 package util;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import org.slf4j.LoggerFactory;
 
@@ -20,16 +20,18 @@ public class CsvFileUtilImpl implements FileUtilInterface {
 		
 		List<String> result = new ArrayList<String> ();
 		try{
-			Scanner scan = new Scanner(new File(filePath));
-			scan.next();
-			while (scan.hasNextLine()) 
+			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			String line=br.readLine();
+			while((line = br.readLine()) != null) 
 			{
-				String line = scan.nextLine();
-				result.add(line);
+				log.info(line);
+				result.add(line);				
 			}
+			br.close();
 		}catch(Exception e){
 			log.error(e.getMessage());
 		}
+		System.out.println(result);
 		return result;
 	}
 
