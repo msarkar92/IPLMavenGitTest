@@ -107,4 +107,16 @@ public class CsvFileDTO {
 	public void setUmpire3(String umpire3) {
 		this.umpire3 = umpire3;
 	}
+	@Override
+	public String toString() {
+		return "CsvFileDTO [season=" + season + ", city=" + city + ", date="
+				+ date + ", team1=" + team1 + ", team2=" + team2
+				+ ", tossWinner=" + tossWinner + ", tossDecision="
+				+ tossDecision + ", winner=" + winner + ", winByRuns="
+				+ winByRuns + ", winByWickets=" + winByWickets
+				+ ", playerOfMatch=" + playerOfMatch + ", venue=" + venue
+				+ ", umpire1=" + umpire1 + ", umpire2=" + umpire2
+				+ ", umpire3=" + umpire3 + "]";
+	}	
+	
 }

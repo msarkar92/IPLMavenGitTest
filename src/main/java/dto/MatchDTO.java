@@ -10,6 +10,7 @@ public class MatchDTO {
 	private Integer team1Id;
 	private Integer team2Id;
 	private Integer tosswinnerId;
+	private Integer tossId;
 	private Integer umpire1Id;
 	private Integer umpire2Id;
 	private Integer umpire3Id;
@@ -55,6 +56,13 @@ public class MatchDTO {
 	}
 	public void setTosswinnerId(Integer tosswinnerId) {
 		this.tosswinnerId = tosswinnerId;
+	}
+	
+	public Integer getTossId() {
+		return tossId;
+	}
+	public void setTossId(Integer tossId) {
+		this.tossId = tossId;
 	}
 	public Integer getUmpire1Id() {
 		return umpire1Id;

@@ -29,7 +29,8 @@ public class CsvParseUtilImpl implements ParseUtilInterface{
 		
 		for(String line:stringFileData){
 			String dataArr[]=line.split(",");
-			try{		
+			try{
+				log.info(line);
 				CsvFileDTO tempCsvFileDTO=new CsvFileDTO();
 				tempCsvFileDTO.setSeason(Integer.parseInt(dataArr[0]));
 				tempCsvFileDTO.setCity(dataArr[1]);
@@ -42,10 +43,22 @@ public class CsvParseUtilImpl implements ParseUtilInterface{
 				tempCsvFileDTO.setWinByRuns(Integer.parseInt(dataArr[8]));
 				tempCsvFileDTO.setWinByWickets(Integer.parseInt(dataArr[9]));
 				tempCsvFileDTO.setPlayerOfMatch(dataArr[10]);
-				tempCsvFileDTO.setVenue(dataArr[11]);
-				tempCsvFileDTO.setUmpire1(dataArr[12]);
-				tempCsvFileDTO.setUmpire2(dataArr[13]);
+				if(dataArr[11].startsWith("\"") && dataArr[12].endsWith("\"")){
+					
+					tempCsvFileDTO.setVenue(dataArr[11].substring(1,dataArr[11].length())+dataArr[12].substring(0,dataArr[12].length()-1));
+					
+					tempCsvFileDTO.setUmpire1(dataArr[13]);
+					tempCsvFileDTO.setUmpire2(dataArr[14]);					
+				}else{
+					tempCsvFileDTO.setVenue(dataArr[11]);
+					tempCsvFileDTO.setUmpire1(dataArr[12]);
+					tempCsvFileDTO.setUmpire2(dataArr[13]);
+				}				
 				tempCsvFileDTO.setUmpire3("");
+				
+				log.info("Venue "+tempCsvFileDTO.getVenue());
+				log.info("Umpire 1"+tempCsvFileDTO.getUmpire1());
+				log.info("Umpire 2"+tempCsvFileDTO.getUmpire2());
 				
 				csvFileDTOs.add(tempCsvFileDTO);
 			}

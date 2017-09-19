@@ -23,26 +23,31 @@ public class DbServiceBO {
 		return true;
 	}
 	
-	public boolean insertUmpire(List<CsvFileDTO> csvFileDTOs){
-		Set<String> umpireName=new HashSet<String>();
+	public void insertUmpire(List<CsvFileDTO> csvFileDTOs){
+		Set<String> umpireNameSet=new HashSet<String>();
 		for(CsvFileDTO dto:csvFileDTOs){
-			umpireName.add(dto.getUmpire1().trim());
-			umpireName.add(dto.getUmpire2().trim());
-			umpireName.add(dto.getUmpire3().trim());
+			if( (!dto.getUmpire1().trim().equals("")) && (!dto.getUmpire2().trim().equals("")) ){
+				umpireNameSet.add(dto.getUmpire1().trim());
+				umpireNameSet.add(dto.getUmpire2().trim());
+			}
 		}
-		return true;
+		dbServiceDAO.insertUmpire(umpireNameSet);
 	}
-	public boolean insertToss(List<CsvFileDTO> csvFileDTOs){
+	
+	public void insertToss(List<CsvFileDTO> csvFileDTOs){
 		Set<String> tossSet=new HashSet<String>();
 		for(CsvFileDTO dto:csvFileDTOs){
-			tossSet.add(dto.getTossDecision().trim());}
-		return true;
+			if(!dto.getTossDecision().trim().equals(""))
+				tossSet.add(dto.getTossDecision().trim());
+		}
+		dbServiceDAO.insertToss(tossSet);
 	}
 	
 	public void insertVenue(List<CsvFileDTO> csvFileDTOs){
 		Map<String,String> venueMap=new HashMap<String,String>(); 
 		for(CsvFileDTO dto:csvFileDTOs){
-			venueMap.put(dto.getCity().trim(), dto.getVenue().trim());
+			if(!dto.getCity().trim().equals(""))
+				venueMap.put(dto.getCity().trim(), dto.getVenue().trim());
 		}
 		dbServiceDAO.insertVenue(venueMap);	
 	}
@@ -50,9 +55,10 @@ public class DbServiceBO {
 	public void insertTeam(List<CsvFileDTO> csvFileDTOs){
 		Set<String> teamName=new HashSet<String>();
 		for(CsvFileDTO dto:csvFileDTOs){
-			log.info(dto.getTeam1());
-			teamName.add(dto.getTeam1().trim());
-			teamName.add(dto.getTeam2().trim());
+			if( (!dto.getTeam1().trim().equals("")) && (!dto.getTeam2().trim().equals("")) ){
+				teamName.add(dto.getTeam1().trim());
+				teamName.add(dto.getTeam2().trim());
+			}
 		}
 		dbServiceDAO.insertTeam(teamName);
 	}
@@ -63,8 +69,16 @@ public class DbServiceBO {
 		ResponseDTO responseDTO=new ResponseDTO();
 		responseDTO.setStatus(true);
 		responseDTO.setMessage("done!");
-		insertTeam(csvFileDTOs);
+		//First we have o insert team details
+		insertTeam(csvFileDTOs);  
+		//Second Venue details
 		insertVenue(csvFileDTOs);
+		//Third Toss Decisions
+		insertToss(csvFileDTOs);
+		//Fourth Umpires
+		insertUmpire(csvFileDTOs);
+		//Match details and Outcome
+		responseDTO=dbServiceDAO.insertMatchDetails(csvFileDTOs);
 		return responseDTO;
 	}
 	

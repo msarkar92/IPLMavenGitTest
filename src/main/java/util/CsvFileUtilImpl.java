@@ -24,14 +24,13 @@ public class CsvFileUtilImpl implements FileUtilInterface {
 			String line=br.readLine();
 			while((line = br.readLine()) != null) 
 			{
-				log.info(line);
+				//log.info(line);
 				result.add(line);				
 			}
 			br.close();
 		}catch(Exception e){
 			log.error(e.getMessage());
 		}
-		System.out.println(result);
 		return result;
 	}
 

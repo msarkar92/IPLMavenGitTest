@@ -48,6 +48,7 @@ public class UploadFileController extends HttpServlet {
 		//To maintain log
 		final org.slf4j.Logger log=LoggerFactory.getLogger(UploadFileController.class); 			
 		ServletFileUpload sfu=new ServletFileUpload(new DiskFileItemFactory());
+		
 		List<FileItem> fileItems=null;
 		try{
 			//To get the list of file items sent form client machine

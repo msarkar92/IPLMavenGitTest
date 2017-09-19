@@ -1,7 +1,5 @@
 package util;
 
-import java.io.File;
-
 import dto.MemberDTO;
 
 public class ValidUtil {
