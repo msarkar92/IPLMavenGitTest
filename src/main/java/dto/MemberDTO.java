@@ -4,6 +4,14 @@ public class MemberDTO {
 	private String userId;
 	private String password;
 	
+	public MemberDTO() {
+		super();
+	}
+	public MemberDTO(String userId, String password) {
+		super();
+		this.userId = userId;
+		this.password = password;
+	}
 	public String getUserId() {
 		return userId;
 	}

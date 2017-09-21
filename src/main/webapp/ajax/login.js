@@ -20,7 +20,10 @@ $(document).ready(function() {
 				}
 				else{
 					//if(setCookie("userId",$("#email").val())==true)
-						window.location.replace("http://localhost:8018/IPLMaven/adminHome.jsp");
+					var host=window.location.host;
+					var port=window.location.port;
+					var pathName="/IPLMaven/adminHome.jsp";
+					window.location.replace("http://"+host+pathName);
 				}
 			},
 			error: function(responseText){

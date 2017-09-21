@@ -59,10 +59,6 @@
 			<script>
 				
 			</script>
-			
-			<form action="AdminFetchMatchsController" method="post">
-				<input type="submit" value="Submit">
-			</form>
 			<div class="card mb-3">
 				<div class="card-header">
 					<i class="fa fa-area-chart"></i> Match Data
@@ -78,7 +74,24 @@
 								<th>Team 1</th>
 								<th>Team 2</th>
 							</tr>
-						</thead>
+						</thead> 
+						<%
+ 							ArrayList<ViewDTO> arr = (ArrayList<ViewDTO>)AdminFetchMatchesDAO.getMatches();
+ 											if (arr.size() > 0) {
+ 												for (int i = 0; i < arr.size(); i++) {
+ 						%>
+						<tr>
+							<td><%=arr.get(i).getSeason()%></td>
+							<td><%=arr.get(i).getDate()%></td>
+							<td><%=arr.get(i).getVenue()%>
+							<td><%=arr.get(i).getCity()%></td>
+							<td><%=arr.get(i).getTeam1()%></td>
+							<td><%=arr.get(i).getTeam2()%></td>
+						</tr>
+						<%
+							}
+							}
+						%>
 						<tfoot>
 							<tr>
 								<th>Season</th>
@@ -89,28 +102,6 @@
 								<th>Team 2</th>
 							</tr>
 						</tfoot>
-						<!-- 
-						<%/*
-							ArrayList<ViewDto> arr = ViewTablesDao.getAllDetails();
-							if (arr.size() > 0) {
-								for (int i = 0; i < arr.size(); i++) {
-									*/
-						%>
-						<tr>
-							<td><%//=arr.get(i).getSeason()%></td>
-							<td><%//=arr.get(i).getDate()%></td>
-							<td><%//=arr.get(i).getVenue()%>
-							<td><%//=arr.get(i).getCity()%></td>
-							<td><%//=arr.get(i).getTeam1()%></td>
-							<td><%//=arr.get(i).getTeam2()%></td>
-						</tr>
-						<%
-							/*
-							}
-							}
-							*/
-						%>
-						 -->
 					</table>
 				</div>
 			</div>

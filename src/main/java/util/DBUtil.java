@@ -9,7 +9,13 @@ import org.slf4j.LoggerFactory;
 public class DBUtil {
 	
 	//To maintain log
-	final static org.slf4j.Logger log=LoggerFactory.getLogger(CsvParseUtilImpl.class);
+	final static org.slf4j.Logger log=LoggerFactory.getLogger(DBUtil.class);
+	
+	/*
+	public static void main(String args[]){
+		getConnectin();
+	}
+	*/
 	
 	//Create DB Connection
 	public static Connection getConnectin(){
@@ -22,7 +28,7 @@ public class DBUtil {
 			
 			
 			//step1 load the driver class
-			Class.forName("com.mysql.jdbc.Driver");  
+			Class.forName("com.mysql.jdbc.Driver"); 
 
 			//step2 create  the connection object
 			con = DriverManager.getConnection(url,username,pass);

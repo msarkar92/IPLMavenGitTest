@@ -92,6 +92,13 @@
 		<servlet-name>InsertServiceBO</servlet-name>
 		<servlet-class>bo.InsertServiceBO</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AdminFetchMatchsController</display-name>
+		<servlet-name>AdminFetchMatchsController</servlet-name>
+		<servlet-class>controller.AdminFetchMatchsController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>ResetController</servlet-name>
 		<url-pattern>/ResetController</url-pattern>
@@ -107,6 +114,10 @@
 	<servlet-mapping>
 		<servlet-name>InsertServiceBO</servlet-name>
 		<url-pattern>/InsertServiceBO</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminFetchMatchsController</servlet-name>
+		<url-pattern>/AdminFetchMatchsController</url-pattern>
 	</servlet-mapping>
 
 </web-app>

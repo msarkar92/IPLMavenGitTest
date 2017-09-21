@@ -45,7 +45,7 @@ public class ResetController extends HttpServlet {
 		
 		String oldpassword = request.getParameter("oldpass")==null?"":request.getParameter("oldpass").toString();
 		String  newpassword = request.getParameter("newpass")==null?"": request.getParameter("newpass").toString();
-		String confirmpassword = request.getParameter("confirmpass")==null?"":request.getParameter("confirmpass");
+		String confirmpassword = request.getParameter("confirmpass")==null?"":request.getParameter("confirmpass").toString();
 		
 		//PrintWriter out=response.getWriter();
 		Cookie[] cookie=request.getCookies();
@@ -127,7 +127,6 @@ public class ResetController extends HttpServlet {
 				} 
 				catch (Exception e) 
 				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
