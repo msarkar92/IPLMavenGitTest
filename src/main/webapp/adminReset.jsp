@@ -66,8 +66,8 @@
 	</nav>
 
 	<p style="text-align: center;">
-		<%=request.getAttribute("msg") == null ? "" : request
-					.getAttribute("msg")%>
+		<%=request.getAttribute("resetStatus") == null ? "" : request
+					.getAttribute("resetStatus")%>
 	</p>
 
 	<div class="container">
@@ -84,7 +84,7 @@
 									Password</label>
 								<div class="col-md-9">
 									<input type="password" id="inputPassword" name="oldpass"
-										class="form-control" placeholder="Password">
+										class="form-control" placeholder="Password" required>
 								</div>
 							</div>
 
@@ -93,7 +93,7 @@
 									Password</label>
 								<div class="col-md-9">
 									<input type="password" id="inputPassword" name="newpass"
-										class="form-control" placeholder="Password">
+										class="form-control" placeholder="Password" required>
 								</div>
 							</div>
 
@@ -102,7 +102,7 @@
 									Password</label>
 								<div class="col-md-9">
 									<input type="password" id="inputPassword" name="confirmpass"
-										class="form-control" placeholder="Password">
+										class="form-control" placeholder="Password" required>
 								</div>
 							</div>
 

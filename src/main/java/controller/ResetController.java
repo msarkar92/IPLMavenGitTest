@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.LoggerFactory;
 
+import bo.ResetBO;
 import dao.ResetDAO;
+import dto.MemberDTO;
+import dto.ResponseDTO;
 
 /**
  * Servlet implementation class ResetController
@@ -43,9 +46,9 @@ public class ResetController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String oldpassword = request.getParameter("oldpass")==null?"":request.getParameter("oldpass").toString();
-		String  newpassword = request.getParameter("newpass")==null?"": request.getParameter("newpass").toString();
-		String confirmpassword = request.getParameter("confirmpass")==null?"":request.getParameter("confirmpass").toString();
+		String oldpassword = request.getParameter("oldpass");//==null?"":request.getParameter("oldpass").toString();
+		String  newpassword = request.getParameter("newpass");//==null?"": request.getParameter("newpass").toString();
+		String confirmpassword = request.getParameter("confirmpass");//==null?"":request.getParameter("confirmpass").toString();
 		
 		//PrintWriter out=response.getWriter();
 		Cookie[] cookie=request.getCookies();
@@ -63,78 +66,36 @@ public class ResetController extends HttpServlet {
 		log.debug(uname);
 		log.debug(newpassword);
 		
-		try
-		{
-			if(oldpassword.equals(null) || oldpassword==""|| newpassword.equals(null) || newpassword==""||confirmpassword.equals(null) || confirmpassword==""){
-				request.setAttribute("msg", "All fields are mandatory");
-				RequestDispatcher rd=request.getRequestDispatcher("adminReset.jsp");
-				rd.include(request, response);
-			}
-			else if(!newpassword.equals(confirmpassword))
+		ResetBO resetBO=new ResetBO();
+		MemberDTO memberDTO=new MemberDTO(uname,oldpassword);
+		ResponseDTO responseDTO=new ResponseDTO();
+		responseDTO=resetBO.reset(memberDTO,newpassword,confirmpassword);
+		
+		RequestDispatcher rd=null;
+		
+		if(!responseDTO.getStatus()){
+			request.setAttribute("resetStatus",responseDTO.getMessage());
+			rd=request.getRequestDispatcher("adminReset.jsp");
+		}else{
+			Cookie loginCookie=null;
+			if(cookie != null)
 			{
-				request.setAttribute("msg", "Password does not match");
-				RequestDispatcher rd=request.getRequestDispatcher("adminReset.jsp");
-				rd.include(request, response);
-			}		
-			else			
-			{
-				//LoginBO l=new LoginBO();
-				//l.setEmail(uname);
-				//l.setPassword(newpassword);
-				try {
-					int status=ResetDAO.updatedata(newpassword, uname);
-					if(status!=0)
-					{
-
-						Cookie loginCookie=null;
-						if(cookie != null)
-						{
-							for(Cookie ck : cookie)
-							{
-								if(ck.getName().equals("userId"))
-								{
-									loginCookie = ck;
-									break;
-								}
-							}
-						}
-						if(loginCookie != null)
-						{
-							loginCookie.setMaxAge(0);
-							response.addCookie(loginCookie);
-						}
-						/*
-						out.print("<script>");
-						out.print("alert('password updated');");
-						out.print("</script>");
-						*/
-
-						log.info("Password Updated");
-						response.sendRedirect("adminLogin.jsp");
-						//request.setAttribute("msg", "Password Updated");
-						//RequestDispatcher rd=request.getRequestDispatcher("LogoutController");  
-
-
-						//rd.include(request, response);
-						//response.sendRedirect("login.jsp");
-					}
-					else
-					{
-						request.setAttribute("msg", "Password not updated");
-						RequestDispatcher rd=request.getRequestDispatcher("adminReset.jsp");
-						rd.include(request, response);
-					}
-				} 
-				catch (Exception e) 
+				for(Cookie ck : cookie)
 				{
-					e.printStackTrace();
+					if(ck.getName().equals("userId"))
+					{
+						loginCookie = ck;
+						break;
+					}
 				}
 			}
+			if(loginCookie != null)
+			{
+				loginCookie.setMaxAge(0);
+				response.addCookie(loginCookie);
+			}
+			rd=request.getRequestDispatcher("adminLogin.jsp");			
 		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
+		rd.forward(request, response);
 	}
-
 }
