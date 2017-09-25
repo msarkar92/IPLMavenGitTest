@@ -7,6 +7,26 @@ public class OutcomeDTO {
 	private Integer winByWickets;
 	private Integer winTeamId;
 	
+	public OutcomeDTO() {
+		super();
+	}
+	public OutcomeDTO(String playerOfMatch, Integer winByRuns,
+			Integer winByWickets, Integer winTeamId) {
+		super();
+		this.playerOfMatch = playerOfMatch;
+		this.winByRuns = winByRuns;
+		this.winByWickets = winByWickets;
+		this.winTeamId = winTeamId;
+	}
+	public OutcomeDTO(Integer matchId, String playerOfMatch, Integer winByRuns,
+			Integer winByWickets, Integer winTeamId) {
+		super();
+		this.matchId = matchId;
+		this.playerOfMatch = playerOfMatch;
+		this.winByRuns = winByRuns;
+		this.winByWickets = winByWickets;
+		this.winTeamId = winTeamId;
+	}
 	public Integer getMatchId() {
 		return matchId;
 	}

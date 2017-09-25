@@ -1,1 +1,7 @@
-./classpath./settings./target/iplstory-final.docx
+/.settings/
+
+/target/
+
+/.classpath
+
+/.project

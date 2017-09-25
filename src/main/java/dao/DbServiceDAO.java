@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import dto.CsvFileDTO;
 import dto.MatchDTO;
+import dto.OutcomeDTO;
 import dto.ResponseDTO;
 import util.DBUtil;
 
@@ -94,21 +95,27 @@ public class DbServiceDAO {
 			//log.info(csvFileDTO.toString());
 			
 			MatchDTO matchDTO=new MatchDTO();
+			OutcomeDTO outcomeDTO=new OutcomeDTO();
 			try{
 				matchDTO.setDate(sdf.parse(csvFileDTO.getDate()));
 			}catch(Exception e){
 				log.error("Date parse error"+e.getMessage());
 			}
+			//To set match details
 			matchDTO.setVenueId(getVenueId(csvFileDTO.getVenue()));
 			matchDTO.setSeason(csvFileDTO.getSeason());
 			matchDTO.setTeam1Id(getTeamId(csvFileDTO.getTeam1()));
-			matchDTO.setTeam2Id(getTeamId(csvFileDTO.getTeam2()));
-			
+			matchDTO.setTeam2Id(getTeamId(csvFileDTO.getTeam2()));			
 			matchDTO.setTossId(getTossId(csvFileDTO.getTossDecision()));
 			matchDTO.setTosswinnerId(getTeamId(csvFileDTO.getWinner()));
 			matchDTO.setUmpire1Id(getUmpireId(csvFileDTO.getUmpire1()));
 			matchDTO.setUmpire2Id(getUmpireId(csvFileDTO.getUmpire2()));
 			
+			//To set outcome details for the current match details
+			outcomeDTO.setPlayerOfMatch(csvFileDTO.getPlayerOfMatch());
+			outcomeDTO.setWinByRuns(csvFileDTO.getWinByRuns());
+			outcomeDTO.setWinByWickets(csvFileDTO.getWinByWickets());
+			outcomeDTO.setWinTeamId(getTeamId(csvFileDTO.getWinner()));
 			try{
 				pstmt=con.prepareStatement("insert into match_details(date,venue_id,season,team1_id,team2_id,"
 						+ "toss_id,tosswinner_id,umpire1_id,umpire2_id) values(?,?,?,?,?,?,?,?,?)");
@@ -124,14 +131,53 @@ public class DbServiceDAO {
 				Integer result=pstmt.executeUpdate();
 				if(result>0){
 					responseDTO.setStatus(true);
-					responseDTO.setMessage("Inserted Successfully");
+					responseDTO.setMessage("Match Inserted Successfully");
+					//Last inserted match will have max match_id because match_id is auto increment
+					outcomeDTO.setMatchId(getMaxMatchId());
+					try{
+						pstmt=con.prepareStatement("insert into outcome values(?,?,?,?,?)");
+						pstmt.setInt(1, outcomeDTO.getMatchId());
+						pstmt.setString(2, outcomeDTO.getPlayerOfMatch());
+						pstmt.setInt(3, outcomeDTO.getWinByRuns());
+						pstmt.setInt(4, outcomeDTO.getWinByWickets());
+						pstmt.setInt(5, outcomeDTO.getWinTeamId());
+						result=pstmt.executeUpdate();
+						if(result>0){
+							responseDTO.setStatus(true);
+							responseDTO.setMessage("Outcome Inserted Successfully");
+						}
+					}catch(Exception e){
+						log.error("Outcome "+e.getMessage());
+					}
 				}
 			}catch(Exception e){
-				log.error("Insertion "+e.getMessage());
+				log.error("Match Insertion "+e.getMessage());
 			}
 		}
 		log.info(responseDTO.getMessage());
 		return responseDTO;
+	}
+	
+	public Integer getMaxMatchId(){
+		Integer id=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			pstmt=con.prepareStatement("select max(match_id) from match_details");
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				id=rs.getInt(1);
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}finally{
+			try{
+				pstmt.close();
+				rs.close();
+			}catch(Exception e){
+				log.error(e.getMessage());
+			}
+		}
+		return id;
 	}
 	
 	public Integer getTeamId(String teamName){

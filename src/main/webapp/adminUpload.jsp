@@ -17,7 +17,6 @@
 
 <jsp:include page="links_1.jsp"></jsp:include>
 <script src="js/myScript.js"></script>
-<script src="ajax/adminHome.js"></script>
 
 <script type="text/javascript">
 	function selectFile(btnId){
