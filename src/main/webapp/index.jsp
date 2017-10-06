@@ -22,7 +22,7 @@
 </head>
 <body>
 	<div class="background-image-div container-fluid"
-		style="background-image: url('banner.jpg');"></div>
+		style="background-image: url('images/banner/banner.jpg');"></div>
 
 	<nav class="navbar navbar-inverse" data-spy="affix"
 		data-offset-top="200">
